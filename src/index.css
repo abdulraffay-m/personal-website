@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  /* colours */
+  --color-cream:        #FAF3E7;
+  --color-paper:        #F4E9D4;
+  --color-ivory:        #FFFCF5;
+  --color-blush:        #E8C5B8;
+  --color-dusty-rose:   #C99A8F;
+  --color-deep-wine:    #6B2C39;
+  --color-burgundy:     #4A1822;
+  --color-gold:         #C9A961;
+  --color-gold-soft:    #DCC58A;
+  --color-ink:          #3D2E2A;
+  --color-ink-soft:     #6B5852;
+  --color-ink-faded:    #A89B95;
+
+  /* fonts */
+  --font-display:    'Cormorant Garamond', serif;
+  --font-heading:    'Cormorant Garamond', serif;
+  --font-body:       'Inter Tight', sans-serif;
+  --font-editorial:  'Cormorant Garamond', serif;
+  --font-hand:       'Caveat', cursive;
+  --font-mono:       'JetBrains Mono', monospace;
+
+  /* radii */
+  --radius-sm: 2px;
+  --radius:    8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* shadows */
+  --shadow-card:          0 4px 12px rgba(74, 24, 34, 0.08);
+  --shadow-card-hover:    0 6px 16px rgba(74, 24, 34, 0.18);
+  --shadow-polaroid:      0 6px 14px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+  --shadow-polaroid-lift: 0 16px 32px rgba(0,0,0,0.18);
+  --shadow-letter:        0 1px 3px rgba(0,0,0,0.1), 0 6px 24px rgba(0,0,0,0.12), inset 0 0 60px rgba(74, 24, 34, 0.04);
+
+  /* motion */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in:    cubic-bezier(0.7, 0, 1, 0.3);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* paper noise */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06' /%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+/* gold focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* petal float animation */
+@keyframes float-up {
+  0%   { transform: translateY(100vh) rotate(0deg);   opacity: 0; }
+  5%   { opacity: 0.7; }
+  95%  { opacity: 0.5; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+.particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  animation: float-up var(--dur, 14s) var(--delay, 0s) linear infinite;
+}
+
+/* skip-to-content */
+.skip-link {
+  position: absolute;
+  top: -999px;
+  left: 16px;
+  background: var(--color-deep-wine);
+  color: var(--color-ivory);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  z-index: 9999;
+}
+.skip-link:focus {
+  top: 16px;
+}
+
+/* typewriter caret */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.caret {
+  display: inline-block;
+  width: 1px;
+  height: 1.1em;
+  background: var(--color-deep-wine);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 600ms step-end infinite;
+}
+
+/* vinyl spin */
+@keyframes spin-vinyl {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* draw-on tick */
+@keyframes draw-check {
+  from { stroke-dashoffset: 40; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
