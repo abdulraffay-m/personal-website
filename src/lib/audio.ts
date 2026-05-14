@@ -6,9 +6,9 @@ let ambient: Howl | null = null;
 export function getAmbient() {
   if (!ambient) {
     ambient = new Howl({
-      src: ['/music/ambient.mp3'],
+      src: ['/ambient.mp3'],
       loop: true,
-      volume: 0.28,
+      volume: 0.85,
       html5: true,
     });
   }
