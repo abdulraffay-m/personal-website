@@ -45,7 +45,7 @@ export default function Letter() {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold: 0.2 }
+      { threshold: 0.05 }
     );
     obs.observe(el);
     return () => obs.disconnect();

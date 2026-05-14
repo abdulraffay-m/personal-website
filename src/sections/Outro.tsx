@@ -1,35 +1,19 @@
 // src/sections/Outro.tsx
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { useNavigate } from 'react-router-dom';
 import { timeUntil } from '../lib/daysTogether';
 import { people } from '../content';
-import { petalDrop } from '../lib/confetti';
-import { setSecretFound, secretFound } from '../lib/sessionFlags';
-import { usePrefersReducedMotion } from '../lib/reducedMotion';
-import PetalSVG from '../components/svg/PetalSVG';
 import WaxSeal from '../components/WaxSeal';
 
 const fmt2 = (n: number) => String(n).padStart(2, '0');
 
 export default function Outro() {
-  const navigate = useNavigate();
-  const reduced = usePrefersReducedMotion();
   const [countdown, setCountdown] = useState(() => timeUntil(people.nextAnniversary));
-  const [glowing, setGlowing] = useState(secretFound());
-  const [hovering, setHovering] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => setCountdown(timeUntil(people.nextAnniversary)), 1000);
     return () => clearInterval(id);
   }, []);
-
-  function onFlowerClick() {
-    setSecretFound();
-    setGlowing(true);
-    if (!reduced) petalDrop({ x: 0.5, y: 0.8 });
-    setTimeout(() => navigate('/secret'), 600);
-  }
 
   return (
     <section id="outro" aria-labelledby="outro-heading" className="relative z-10 bg-paper py-24 px-5 md:px-8 text-center">
@@ -71,33 +55,6 @@ export default function Outro() {
               {people.me.name}
             </p>
             <WaxSeal initial={people.me.initial} size={56} />
-          </div>
-
-          {/* Easter egg flower — barely visible, pointer hint only on hover */}
-          <div className="flex justify-center mt-8">
-            <motion.button
-              aria-label="a small surprise"
-              onClick={onFlowerClick}
-              onMouseEnter={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-              className="relative"
-              style={{ cursor: hovering ? 'pointer' : 'default', opacity: 0.35 }}
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div
-                animate={hovering || glowing
-                  ? { rotate: 360 }
-                  : { rotate: 0 }
-                }
-                transition={hovering || glowing
-                  ? { duration: 8, repeat: Infinity, ease: 'linear' }
-                  : { duration: 0.5 }
-                }
-              >
-                <PetalSVG size={36} glowing={glowing} />
-              </motion.div>
-            </motion.button>
           </div>
         </motion.div>
       </div>
