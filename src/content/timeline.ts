@@ -6,13 +6,13 @@ export const timeline: TimelineEvent[] = [
     date: 'January 2024',
     title: 'the first crazy moment',
     body: 'we met in joyland and i noticed the way you laugh before the punchline lands. i thought about that for weeks.',
-    // photo: '/Thefirstcrazymoment.jpg',  ← convert DNG to JPG and uncomment
+    photo: '/Thefirstcrazymoment.jpg',
   },
   {
     date: 'February 2024',
     title: 'the trip where i felt something',
     body: 'that was the first sign.',
-    // photo: '/firsttripwherewefeltsomething.jpg',  ← convert HEIC to JPG and uncomment
+    photo: '/firsttripwherewefeltsomething.jpg',
   },
   {
     date: 'February 2024',
@@ -42,7 +42,7 @@ export const timeline: TimelineEvent[] = [
     date: 'October 2024',
     title: 'meray ghar ayi aik nani pari',
     body: 'meray ghar ayi aik nani pari.',
-    // photo: '/gharmeinkhana.jpg',  ← convert HEIC to JPG and uncomment
+    photo: '/gharmein_khana.jpg',
   },
   {
     date: 'February 2025',
@@ -54,7 +54,7 @@ export const timeline: TimelineEvent[] = [
     date: 'July 2025',
     title: 'surviving fast together',
     body: "surviving in fast together. smh, couldn't do it without you.",
-    // photo: '/prepaperdifferentreactions.jpg',  ← convert DNG to JPG and uncomment
+    photo: '/prepaperdifferentreactions.jpg',
   },
   {
     date: 'October 2025',
