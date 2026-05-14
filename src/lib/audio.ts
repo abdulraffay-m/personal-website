@@ -9,7 +9,6 @@ export function getAmbient() {
       src: ['/ambient.mp3'],
       loop: true,
       volume: 0.85,
-      html5: true,
     });
   }
   return ambient;
