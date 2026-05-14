@@ -47,15 +47,6 @@ export default function Quiz() {
     const correct = optionIndex === q.answerIndex;
     const newScore = state.score + (correct ? 1 : 0);
     setState(s => ({ ...s, selected: optionIndex, score: newScore }));
-
-    if (correct && state.questionIndex === quiz.length - 1) {
-      setTimeout(() => {
-        setState(s => ({ ...s, finished: true }));
-        if (!reduced) bigCelebration();
-      }, 800);
-    } else if (correct) {
-      setTimeout(() => advance(newScore), 800);
-    }
   }
 
   function advance(_currentScore = state.score) {
@@ -158,8 +149,8 @@ export default function Quiz() {
                 })}
               </div>
 
-              {/* wrong answer reveal */}
-              {state.selected !== null && state.selected !== q.answerIndex && (
+              {/* answer reveal note */}
+              {state.selected !== null && (
                 <motion.div
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}

@@ -41,20 +41,21 @@ export default function Letter() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold: 0.05 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
+    // Force the letter to appear in case IntersectionObserver was failing on this device
+    const id = setTimeout(() => setInView(true), 300);
+    return () => clearTimeout(id);
   }, []);
+
+  const safeLetter = letter || { date: '', greeting: '', paragraphs: [], signature: '' };
+  const safeDate = safeLetter.date || '';
+  const safeGreeting = safeLetter.greeting || '';
+  const safeParagraphs = safeLetter.paragraphs || [];
+  const safeSignature = safeLetter.signature || '';
 
   const animate = shouldAnimate && inView;
 
-  const dateText     = useTypewriter(letter.date,     CHAR_DELAY_DATE,     animate && phase === 0, () => setPhase(1));
-  const greetText    = useTypewriter(letter.greeting, CHAR_DELAY_GREETING, animate && phase === 1, () => setPhase(2));
+  const dateText     = useTypewriter(safeDate,     CHAR_DELAY_DATE,     animate && phase === 0, () => setPhase(1));
+  const greetText    = useTypewriter(safeGreeting, CHAR_DELAY_GREETING, animate && phase === 1, () => setPhase(2));
   const allBodyDone  = useRef(false);
 
   useEffect(() => {
@@ -108,14 +109,14 @@ export default function Letter() {
 
           {/* date */}
           <p className="font-hand text-[1.1rem] text-ink-faded text-right mb-6">
-            {instant ? letter.date : dateText.displayed}
+            {instant ? safeDate : dateText.displayed}
             {!instant && phase === 0 && <span className="caret" aria-hidden="true" />}
           </p>
 
           {/* greeting */}
           {(instant || phase >= 1) && (
             <p className="font-display italic text-deep-wine text-[1.2rem] mb-4">
-              {instant ? letter.greeting : greetText.displayed}
+              {instant ? safeGreeting : greetText.displayed}
               {!instant && phase === 1 && <span className="caret" aria-hidden="true" />}
             </p>
           )}
@@ -123,7 +124,7 @@ export default function Letter() {
           {/* body paragraphs */}
           {(instant || phase >= 2) && (
             <BodyTypewriter
-              paragraphs={letter.paragraphs}
+              paragraphs={safeParagraphs}
               instant={instant}
               active={phase === 2}
               onDone={() => setPhase(3)}
@@ -139,7 +140,7 @@ export default function Letter() {
               className="font-hand text-[1.2rem] text-ink-soft text-right mt-6 -rotate-2"
               onAnimationComplete={() => setPhase(4)}
             >
-              {letter.signature}
+              {safeSignature}
             </motion.p>
           )}
         </motion.div>
