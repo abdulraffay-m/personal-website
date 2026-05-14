@@ -4,7 +4,7 @@ import type { People, TimelineEvent, Photo, Letter, Song, Place, Question, Dream
 export const peoplePh: People = {
   her: { name: 'Zarpash', initial: 'Z' },
   me: { name: 'Raffay', initial: 'R' },
-  tagline: "and we've not gotten bored once.",
+  tagline: "and we've not looked backed since",
   metAt: '2023-11-12T18:30:00',
   togetherSince: '2024-05-14T00:00:00',
   nextAnniversary: '2027-05-14T00:00:00',
@@ -12,9 +12,10 @@ export const peoplePh: People = {
 
 export const timelinePh: TimelineEvent[] = [
   {
-    date: 'November 2023',
+    date: 'January 2024',
     title: 'the first time',
-    body: "we met and i noticed the way you laugh before the punchline lands. i thought about that for weeks.",
+    body: "we met in joyland and i noticed the way you laugh before the punchline lands. i thought about that for weeks.",
+    photo: 'our-two-years\public\Thefirstcrazymoment.dng'
   },
   {
     date: 'December 2023',
