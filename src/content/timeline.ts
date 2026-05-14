@@ -45,12 +45,6 @@ export const timeline: TimelineEvent[] = [
     photo: '/gharmein_khana.jpg',
   },
   {
-    date: 'February 2025',
-    title: 'you making me a travelling maniac',
-    body: 'you making me a travelling maniac.',
-    photo: '/arangkheltrip.jpg',
-  },
-  {
     date: 'July 2025',
     title: 'surviving fast together',
     body: "surviving in fast together. smh, couldn't do it without you.",
@@ -61,5 +55,11 @@ export const timeline: TimelineEvent[] = [
     title: 'endless sleeping in my car',
     body: 'endless sleeping in my car cameo. me sitting there watching you and being happy.',
     photo: '/endlesssleepinginmycar.jpg',
+  },
+  {
+    date: 'February 2026',
+    title: 'you making me a travelling maniac',
+    body: 'you making me a travelling maniac.',
+    photo: '/arangkheltrip.jpg',
   },
 ];
