@@ -2,11 +2,11 @@
 import type { People, TimelineEvent, Photo, Letter, Song, Place, Question, Dream, SecretMoment } from '../types';
 
 export const peoplePh: People = {
-  her:  { name: 'Zarpash', initial: 'Z' },
-  me:   { name: 'Ibrahim', initial: 'I' },
+  her: { name: 'Zarpash', initial: 'Z' },
+  me: { name: 'Raffay', initial: 'R' },
   tagline: "and we've not gotten bored once.",
-  metAt:           '2023-11-12T18:30:00',
-  togetherSince:   '2024-05-14T00:00:00',
+  metAt: '2023-11-12T18:30:00',
+  togetherSince: '2024-05-14T00:00:00',
   nextAnniversary: '2027-05-14T00:00:00',
 };
 
@@ -156,11 +156,11 @@ export const playlistPh: Song[] = [
 ];
 
 export const placesPh: Place[] = [
-  { name: 'Lahore',     memory: 'where this started, technically',                    xPct: 55, yPct: 28 },
-  { name: 'Islamabad',  memory: 'the long drive to get there was better',             xPct: 50, yPct: 22 },
-  { name: 'Murree',     memory: "you were cold the whole time and pretended not to be", xPct: 51, yPct: 19 },
-  { name: 'Karachi',    memory: "the one trip we almost didn't take",                  xPct: 38, yPct: 62 },
-  { name: 'Faisalabad', memory: 'neither of us expected to like it',                   xPct: 48, yPct: 35 },
+  { name: 'Lahore', memory: 'where this started, technically', xPct: 55, yPct: 28 },
+  { name: 'Islamabad', memory: 'the long drive to get there was better', xPct: 50, yPct: 22 },
+  { name: 'Murree', memory: "you were cold the whole time and pretended not to be", xPct: 51, yPct: 19 },
+  { name: 'Karachi', memory: "the one trip we almost didn't take", xPct: 38, yPct: 62 },
+  { name: 'Faisalabad', memory: 'neither of us expected to like it', xPct: 48, yPct: 35 },
   { name: 'Nathiagali', memory: 'the fog rolled in and we stayed longer than planned', xPct: 51, yPct: 18 },
 ];
 
@@ -223,11 +223,11 @@ export const quizPh: Question[] = [
 ];
 
 export const futurePh: Dream[] = [
-  { id: 'trip-north',  text: 'road trip to the northern areas, no itinerary',        done: false },
-  { id: 'cook-proper', text: 'cook an actual meal together, not just chai',           done: true  },
-  { id: 'sunrise',     text: 'watch a sunrise without having stayed up for it',       done: false },
-  { id: 'book-swap',   text: 'finally finish the book-swap we started',               done: false },
-  { id: 'rain-walk',   text: 'walk in the rain and not run for cover',                done: true  },
+  { id: 'trip-north', text: 'road trip to the northern areas, no itinerary', done: false },
+  { id: 'cook-proper', text: 'cook an actual meal together, not just chai', done: true },
+  { id: 'sunrise', text: 'watch a sunrise without having stayed up for it', done: false },
+  { id: 'book-swap', text: 'finally finish the book-swap we started', done: false },
+  { id: 'rain-walk', text: 'walk in the rain and not run for cover', done: true },
   { id: 'three-years', text: 'get to year three and build something like this again', done: false },
 ];
 
