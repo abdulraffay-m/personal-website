@@ -13,6 +13,9 @@ function useTypewriter(text: string, delay: number, enabled: boolean, onDone?: (
   const [displayed, setDisplayed] = useState(enabled ? '' : text);
   const [done, setDone] = useState(!enabled);
 
+  const onDoneRef = useRef(onDone);
+  useEffect(() => { onDoneRef.current = onDone; }, [onDone]);
+
   useEffect(() => {
     if (!enabled) return;
     let i = 0;
@@ -21,11 +24,11 @@ function useTypewriter(text: string, delay: number, enabled: boolean, onDone?: (
       if (i >= text.length) {
         clearInterval(id);
         setDone(true);
-        onDone?.();
+        onDoneRef.current?.();
       }
     }, delay);
     return () => clearInterval(id);
-  }, [enabled, text, delay, onDone]);
+  }, [enabled, text, delay]);
 
   return { displayed, done };
 }
@@ -173,6 +176,9 @@ function BodyTypewriter({
   const [displayed, setDisplayed] = useState(instant ? full : '');
   const [done, setDone] = useState(instant);
 
+  const onDoneRef = useRef(onDone);
+  useEffect(() => { onDoneRef.current = onDone; }, [onDone]);
+
   useEffect(() => {
     if (instant || !active) return;
     let i = 0;
@@ -181,13 +187,13 @@ function BodyTypewriter({
       if (i >= full.length) {
         clearInterval(id);
         setDone(true);
-        onDone();
+        onDoneRef.current();
       }
     }, CHAR_DELAY_BODY);
-    const skip = () => { clearInterval(id); setDisplayed(full); setDone(true); onDone(); };
+    const skip = () => { clearInterval(id); setDisplayed(full); setDone(true); onDoneRef.current(); };
     window.addEventListener('keydown', skip, { once: true });
     return () => { clearInterval(id); window.removeEventListener('keydown', skip); };
-  }, [active, instant, full, onDone]);
+  }, [active, instant, full]);
 
   return (
     <div className="space-y-4">
